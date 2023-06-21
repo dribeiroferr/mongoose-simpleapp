@@ -12,31 +12,40 @@ async function getScanByDateRange(req, res){
       return res.status(400).json({ error: error.details[0].message });
     }
 
-    const { country, startDate, endDate } = req.query;
+    const { startDate, endDate } = req.query;
+
+    const query = {};
+
+    // if country parameter is provided, include it in query
+    if(req.query.country){
+      query.country = req.query.country;
+    }
+
+    if(startDate && endDate){
+      query.time = query.time = { $gte: new Date(startDate), $lte: new Date(endDate) };
+    }
 
     connectDB();
 
-    const scans = await Scan.find({
-      country,
-      time: { 
-        $gte: new Date(startDate),
-        $lte: new Date(endDate)
-      }
-    }).maxTimeMS(30000);
-
-    const scanDataByCountry = {};
-    scans.forEach((scan) => {
-      const { country } = scan;
-      if(scanDataByCountry[country]){
-        scanDataByCountry[country]++;
-      } else { 
-        scanDataByCountry[country];
-      }
-    });
-
-    console.log('data_retrived: ', scans);
+    const scanCountByCountry = await Scan.aggregate([
+      { $match: query },
+      {
+        $group: {
+          _id: { country: '$country' },
+          total: { $sum: 1 },
+        },
+      },
+      {
+        $project: {
+          _id: 0,
+          country: '$_id.country',
+          total: 1,
+          user_ids: 1,
+        },
+      },
+    ]);
     
-    return res.json(scans);
+    return res.json(scanCountByCountry);
 
 
   } catch (error) {

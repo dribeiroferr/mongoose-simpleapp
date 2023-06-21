@@ -19,6 +19,10 @@ const scanSchema = new mongoose.Schema({
   time: { 
     type: Date, 
     required: true
+  },
+  user_id: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: () => new mongoose.Types.ObjectId()
   }
 });
 
