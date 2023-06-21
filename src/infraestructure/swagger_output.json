@@ -32,10 +32,17 @@
           "responses": {}
         }
       },
-      "/scan": {
+      "/scan?country=Canada&startDate=2023-06-20&endDate=2023-06-20": {
         "get": {
-          "description": "",
-          "parameters": [],
+          "description": "Retrieves scan data from database filtered by parameters, using query strings",
+          "parameters": {
+            "in": "query",
+            "name": "country",
+            "schema": { 
+              "type":"string"
+            },
+            "description": "Country name to filter the scans"
+          },
           "responses": {}
         }
       }

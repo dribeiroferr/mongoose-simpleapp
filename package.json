@@ -9,6 +9,7 @@
   "scripts": {
     "populate:db": "node ./src/infraestructure/scripts/populateDB.js",
     "start": "node src/server.js",
+    "swagger-autogen": "node ./src/infraestructure/swagger.js",
     "test": "yarn jest"
   },
   "dependencies": {

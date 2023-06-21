@@ -2,38 +2,6 @@ const Scan = require('../domain/Scan');
 const { validateDateRange } = require('../../infraestructure/utils/requestValidations/index');
 const connectDB = require('../../infraestructure/utils/config/mogoose');
 
-/**
- * @swagger
- * /scans:
- *   get:
- *     summary: Get total number of scans by country within a date range
- *     description: Retrieve the total number of scans for each country within a specific date range.
- *     parameters:
- *       - name: country
- *         in: query
- *         required: true
- *         description: Country name to filter the scans.
- *         schema:
- *           type: string
- *       - name: startDate
- *         in: query
- *         required: true
- *         description: Start date of the date range.
- *         schema:
- *           type: string
- *           format: date
- *       - name: endDate
- *         in: query
- *         required: true
- *         description: End date of the date range.
- *         schema:
- *           type: string
- *           format: date
- *     responses:
- *       '200':
- *         description: Successful response with the scan count by country.
- */
-
 async function getScanByDateRange(req, res){ 
   try {
     console.log('initializing getScanByDateRange');
