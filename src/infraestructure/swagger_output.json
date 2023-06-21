@@ -1,0 +1,65 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "MongoDB Scan Test API",
+      "description": "[EXAMPLE] - Requests by Date and Time Range"
+    },
+    "host": [
+      "localhost:3000"
+    ],
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "Scan",
+        "description": "Endpoints"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/json"
+    ],
+    "paths": {
+      "*": {
+        "options": {
+          "description": "",
+          "parameters": [],
+          "responses": {}
+        }
+      },
+      "/scan": {
+        "get": {
+          "description": "",
+          "parameters": [],
+          "responses": {}
+        }
+      }
+    },
+    "definitions": {
+      "Scan": {
+        "type": "object",
+        "properties": {
+          "country": {
+            "type": "string",
+            "example": "Canada",
+            "description": "Country name to filter the scans"
+          },
+          "startDate": {
+            "type": "date",
+            "example": 1,
+            "description": "Start date"
+          },
+          "onboarding_status": {
+            "type": "string",
+            "example": "true"
+          }
+        }
+      }
+    }
+  }
+
