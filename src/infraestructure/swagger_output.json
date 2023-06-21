@@ -51,12 +51,13 @@
           },
           "startDate": {
             "type": "date",
-            "example": 1,
-            "description": "Start date"
+            "example": "YYYY-MM-DD",
+            "description": "Start date range"
           },
-          "onboarding_status": {
-            "type": "string",
-            "example": "true"
+          "endDate": {
+            "type": "date",
+            "example": "YYYY-MM-DD",
+            "description": "End date range"
           }
         }
       }
